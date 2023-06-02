@@ -1,5 +1,9 @@
+-- Gui to Lua
+-- Version: 3.2
+
 -- Instances:
 
+local ScreenGui = Instance.new("ScreenGui")
 local FirstButtonFrame = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
 local SecondButtonFrame = Instance.new("Frame")
@@ -10,8 +14,11 @@ local minimizeButton = Instance.new("TextButton")
 
 -- Properties:
 
+ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
 FirstButtonFrame.Name = "FirstButtonFrame"
-FirstButtonFrame.Parent = game.Players.LocalPlayer.PlayerGui -- Parented to PlayerGui
+FirstButtonFrame.Parent = ScreenGui
 FirstButtonFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 FirstButtonFrame.Position = UDim2.new(0.322062045, 0, 0.33561644, 0)
 FirstButtonFrame.Size = UDim2.new(0.348247588, 0, 0.273972601, 0)
@@ -55,7 +62,7 @@ minimizeButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
 minimizeButton.Font = Enum.Font.GothamBold -- Set font to GothamBold
 minimizeButton.TextSize = 18 -- Adjust the font size
 minimizeButton.Size = UDim2.new(0, 30, 0, 30) -- Square size
-minimizeButton.Position = UDim2.new(1, -35, 1, -35) -- Bottom right corner
+minimizeButton.Position = UDim2.new(1, -35, 0, 5) -- Top right corner
 minimizeButton.Text = "-"
 
 -- Walkspeed configuration

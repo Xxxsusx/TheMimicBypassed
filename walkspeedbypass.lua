@@ -24,7 +24,7 @@ button.Parent = frame
 
 -- Walkspeed configuration
 local DEFAULT_SPEED = 13 -- Default walkspeed value
-local STORED_SPEED = 100 -- Stored walkspeed value
+local STORED_SPEED = 81 -- Stored walkspeed value
 local walkspeedEnabled = false -- Variable to track the state of walkspeed script
 
 -- Function to set the walkspeed

@@ -25,10 +25,10 @@ toggleButton.Parent = frame
 -- Create a TextBox for setting the speed
 local textBox = Instance.new("TextBox")
 textBox.Name = "SpeedTextBox"
-textBox.Size = UDim2.new(0, 150, 0, 0)
+textBox.Size = UDim2.new(0, 150, 0, 25)
 textBox.Position = UDim2.new(0.5, 5, 0, 45) -- Adjusted position
-textBox.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cyan background
-textBox.TextColor3 = Color3.new(0, 0, 0) -- Black text color
+textBox.BackgroundTransparency = 1 -- Set transparency to 1 (completely transparent)
+textBox.TextColor3 = Color3.new(1, 1, 1) -- White text color
 textBox.Font = Enum.Font.GothamBold -- Set font to GothamBold
 textBox.TextSize = 14 -- Adjust the font size
 textBox.PlaceholderText = "Set speed (13-200)"
@@ -79,17 +79,16 @@ local function toggleWalkspeedScript()
     end
 end
 
-
--- Function to minimize or restore the frame
+-- Function to toggle the minimize/restore
 local function toggleMinimize()
-    if frame.Size == UDim2.new(0, 200, 0, 80) then
-        frame.Size = UDim2.new(0, 100, 0, 40)
+    if minimizeButton.Text == "-" then
+        frame.Size = UDim2.new(0, 20, 0, 20) -- Minimize the frame size
         minimizeButton.Text = "+"
-        minimizeButton.Position = UDim2.new(1, -25, 1, -25) -- Bottom right corner
+        textBox.Visible = false -- Hide the textBox when frame is minimized
     else
-        frame.Size = UDim2.new(0, 200, 0, 80)
+        frame.Size = UDim2.new(0, 200, 0, 80) -- Restore the frame size
         minimizeButton.Text = "-"
-        minimizeButton.Position = UDim2.new(1, -25, 0, 15) -- Top right corner
+        textBox.Visible = true -- Show the textBox when frame is restored
     end
 end
 

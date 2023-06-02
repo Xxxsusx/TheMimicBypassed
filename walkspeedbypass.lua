@@ -32,13 +32,14 @@ textBox.TextColor3 = Color3.new(1, 1, 1) -- White text color
 textBox.Font = Enum.Font.GothamBold -- Set font to GothamBold
 textBox.TextSize = 14 -- Adjust the font size
 textBox.PlaceholderText = "Set speed (13-200)"
+textBox.Visible = false -- Initially hidden
 textBox.Parent = frame
 
 -- Create a Minimize button
 local minimizeButton = Instance.new("TextButton")
 minimizeButton.Name = "MinimizeButton"
 minimizeButton.Size = UDim2.new(0, 20, 0, 20)
-minimizeButton.Position = UDim2.new(1, -25, 1, -25) -- Bottom right corner
+minimizeButton.Position = UDim2.new(1, -25, 0, 5) -- Top right corner
 minimizeButton.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
 minimizeButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
 minimizeButton.Font = Enum.Font.GothamBold -- Set font to GothamBold

@@ -5,15 +5,15 @@ screenGui.Parent = game.Players.LocalPlayer.PlayerGui
 -- Create a Frame as the background
 local frame = Instance.new("Frame")
 frame.Name = "ButtonFrame"
-frame.Size = UDim2.new(0, 100, 0, 50)
-frame.Position = UDim2.new(0.5, -50, 0.5, -25)
+frame.Size = UDim2.new(0, 200, 0, 80)
+frame.Position = UDim2.new(0.5, -100, 0.5, -40)
 frame.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
 frame.Parent = screenGui
 
 -- Create a TextButton inside the frame
 local button = Instance.new("TextButton")
 button.Name = "ToggleButton"
-button.Size = UDim2.new(1, -10, 1, -10) -- Smaller size with padding
+button.Size = UDim2.new(1, -10, 1, -50) -- Smaller size with padding
 button.Position = UDim2.new(0, 5, 0, 5) -- Padding
 button.BackgroundTransparency = 1 -- Transparent background
 button.TextColor3 = Color3.new(1, 1, 1) -- White text color
@@ -22,15 +22,34 @@ button.TextSize = 18 -- Adjust the font size
 button.Text = "ENABLE"
 button.Parent = frame
 
+-- Create a slider to adjust the speed
+local slider = Instance.new("TextLabel")
+slider.Name = "SpeedSlider"
+slider.Size = UDim2.new(1, -10, 0, 30)
+slider.Position = UDim2.new(0, 5, 1, -35)
+slider.BackgroundTransparency = 1 -- Transparent background
+slider.TextColor3 = Color3.new(1, 1, 1) -- White text color
+slider.Font = Enum.Font.Gotham
+slider.TextSize = 16
+slider.Text = "Walkspeed: 13"
+slider.Parent = frame
+
+local speedBar = Instance.new("Frame")
+speedBar.Name = "SpeedBar"
+speedBar.Size = UDim2.new(0, 0, 1, -4)
+speedBar.Position = UDim2.new(0, 2, 0, 2)
+speedBar.BackgroundColor3 = Color3.new(0, 0.5, 1) -- Blue color
+speedBar.Parent = slider
+
 -- Walkspeed configuration
-local DEFAULT_SPEED = 13 -- Default walkspeed value
-local STORED_SPEED = 81 -- Stored walkspeed value
+local MIN_SPEED = 13 -- Minimum walkspeed value
+local MAX_SPEED = 200 -- Maximum walkspeed value
 local walkspeedEnabled = false -- Variable to track the state of walkspeed script
 
 -- Function to set the walkspeed
-local function setWalkspeed(player)
+local function setWalkspeed(player, speed)
     if player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 then
-        player.Character.Humanoid.WalkSpeed = walkspeedEnabled and STORED_SPEED or DEFAULT_SPEED
+        player.Character.Humanoid.WalkSpeed = speed
     end
 end
 
@@ -44,7 +63,7 @@ local function toggleWalkspeedScript()
         -- Enable the script
         while walkspeedEnabled do
             for _, player in ipairs(game.Players:GetPlayers()) do
-                setWalkspeed(player)
+                setWalkspeed(player, sliderValue)
             end
             wait(0.03) -- Loop interval of 0.03 seconds
         end
@@ -52,17 +71,59 @@ local function toggleWalkspeedScript()
         -- Disable the script
         for _, player in ipairs(game.Players:GetPlayers()) do
             if player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 then
-                player.Character.Humanoid.WalkSpeed = DEFAULT_SPEED -- Set to default walkspeed
+                player.Character.Humanoid.WalkSpeed = MIN_SPEED -- Set to default walkspeed
             end
         end
     end
 end
 
+-- Function to update the slider value and walkspeed text
+local function updateSliderValue(value)
+    local speed = math.floor(MIN_SPEED + (MAX_SPEED - MIN_SPEED) * value)
+    slider.Text = "Walkspeed: " .. speed
+    setWalkspeed(game.Players.LocalPlayer, speed)
+end
+
+-- Slider functionality
+local sliderValue = 0 -- Current slider value
+
+local function updateSliderPosition(input)
+    local position = math.clamp((input.Position.X - slider.AbsolutePosition.X) / slider.AbsoluteSize.X, 0, 1)
+    sliderValue = position
+    speedBar.Size = UDim2.new(position, -4, 1, -4)
+    updateSliderValue(position)
+end
+
+slider.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        updateSliderPosition(input)
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                updateSliderValue(sliderValue)
+            end
+        end)
+    end
+end)
+
+slider.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        if input.UserInputState == Enum.UserInputState.Begin then
+            updateSliderPosition(input)
+        end
+    end
+end)
+
+slider:GetPropertyChangedSignal("AbsolutePosition"):Connect(function()
+    updateSliderPosition({
+        Position = Vector2.new(slider.AbsolutePosition.X, slider.AbsolutePosition.Y),
+        UserInputType = Enum.UserInputType.MouseMovement
+    })
+end)
+
 -- Connect the function to the button's MouseButton1Click event
 button.MouseButton1Click:Connect(toggleWalkspeedScript)
 
 -- Dragging functionality (unchanged)
-
 local dragging
 local dragStart
 local startPos

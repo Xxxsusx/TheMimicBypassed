@@ -1,50 +1,62 @@
--- Create a ScreenGui
-local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = game.Players.LocalPlayer.PlayerGui
+-- Instances:
 
--- Create a Frame as the background
-local frame = Instance.new("Frame")
-frame.Name = "ButtonFrame"
-frame.Size = UDim2.new(0, 200, 0, 80)
-frame.Position = UDim2.new(0, 20, 1, -100) -- Bottom left corner
-frame.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
-frame.Parent = screenGui
-
--- Create a TextButton inside the frame for enable/disable
+local FirstButtonFrame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local SecondButtonFrame = Instance.new("Frame")
+local UICorner_2 = Instance.new("UICorner")
 local toggleButton = Instance.new("TextButton")
+local textBox = Instance.new("TextBox")
+local minimizeButton = Instance.new("TextButton")
+
+-- Properties:
+
+FirstButtonFrame.Name = "FirstButtonFrame"
+FirstButtonFrame.Parent = game.StarterGui.ScreenGui
+FirstButtonFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+FirstButtonFrame.Position = UDim2.new(0.322062045, 0, 0.33561644, 0)
+FirstButtonFrame.Size = UDim2.new(0.348247588, 0, 0.273972601, 0)
+FirstButtonFrame.Active = true
+FirstButtonFrame.Draggable = true
+
+UICorner.Parent = FirstButtonFrame
+
+SecondButtonFrame.Name = "SecondButtonFrame"
+SecondButtonFrame.Parent = FirstButtonFrame
+SecondButtonFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+SecondButtonFrame.Position = UDim2.new(0.0192719493, 0, 0.0500000007, 0)
+SecondButtonFrame.Size = UDim2.new(0.963597417, 0, 0.904999971, 0)
+
+UICorner_2.Parent = SecondButtonFrame
+
 toggleButton.Name = "ToggleButton"
-toggleButton.Size = UDim2.new(0.5, -10, 1, -10) -- Smaller size with padding
-toggleButton.Position = UDim2.new(0, 5, 0, 5) -- Padding
+toggleButton.Parent = SecondButtonFrame
 toggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green background
 toggleButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
 toggleButton.Font = Enum.Font.GothamBold -- Set font to GothamBold
 toggleButton.TextSize = 18 -- Adjust the font size
+toggleButton.Size = UDim2.new(0.5, -10, 1, -10) -- Smaller size with padding
+toggleButton.Position = UDim2.new(0, 5, 0, 5) -- Padding
 toggleButton.Text = "ENABLE"
-toggleButton.Parent = frame
 
--- Create a TextBox for setting the speed
-local textBox = Instance.new("TextBox")
 textBox.Name = "SpeedTextBox"
-textBox.Size = UDim2.new(0, 150, 0, 25)
-textBox.Position = UDim2.new(0.5, 5, 0, 35) -- Below the toggle button
+textBox.Parent = SecondButtonFrame
 textBox.BackgroundColor3 = Color3.new(1, 1, 1) -- White background
 textBox.TextColor3 = Color3.new(0, 0, 0) -- Black text color
 textBox.Font = Enum.Font.GothamBold -- Set font to GothamBold
 textBox.TextSize = 14 -- Adjust the font size
+textBox.Size = UDim2.new(0, 150, 0, 25)
+textBox.Position = UDim2.new(0.5, 5, 0, 35) -- Below the toggle button
 textBox.PlaceholderText = "Set speed (13-200)"
-textBox.Parent = frame
 
--- Create a Minimize button
-local minimizeButton = Instance.new("TextButton")
 minimizeButton.Name = "MinimizeButton"
-minimizeButton.Size = UDim2.new(0, 20, 0, 20)
-minimizeButton.Position = UDim2.new(1, -25, 1, -25) -- Bottom right corner
+minimizeButton.Parent = SecondButtonFrame
 minimizeButton.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
 minimizeButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
 minimizeButton.Font = Enum.Font.GothamBold -- Set font to GothamBold
 minimizeButton.TextSize = 14 -- Adjust the font size
+minimizeButton.Size = UDim2.new(0, 20, 0, 20) -- Square size
+minimizeButton.Position = UDim2.new(1, -25, 1, -25) -- Bottom right corner
 minimizeButton.Text = "-"
-minimizeButton.Parent = frame
 
 -- Walkspeed configuration
 local MIN_SPEED = 13 -- Minimum walkspeed value
@@ -92,12 +104,12 @@ end
 
 -- Function to minimize or restore the frame
 local function toggleMinimize()
-    if frame.Size == UDim2.new(0, 200, 0, 80) then
-        frame.Size = UDim2.new(0, 100, 0, 40)
+    if SecondButtonFrame.Size == UDim2.new(0.963597417, 0, 0.904999971, 0) then
+        SecondButtonFrame.Size = UDim2.new(0.963597417, 0, 0, 40)
         minimizeButton.Text = "+"
         minimizeButton.Position = UDim2.new(1, -25, 1, -25) -- Bottom right corner
     else
-        frame.Size = UDim2.new(0, 200, 0, 80)
+        SecondButtonFrame.Size = UDim2.new(0.963597417, 0, 0.904999971, 0)
         minimizeButton.Text = "-"
         minimizeButton.Position = UDim2.new(1, -25, 0, 15) -- Top right corner
     end

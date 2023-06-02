@@ -62,7 +62,7 @@ end
 local function toggleWalkspeedScript()
     walkspeedEnabled = not walkspeedEnabled
 
-      if walkspeedEnabled then
+    if walkspeedEnabled then
         local speed = tonumber(textBox.Text)
         if speed then
             while walkspeedEnabled do
@@ -129,10 +129,34 @@ local function enableDragging(gui)
     end)
 end
 
+local function checkButtonState()
+    while true do
+        if not toggleButton:IsDescendantOf(frame) or toggleButton.Position ~= UDim2.new(0, 5, 0, 5) then
+            -- Recreate the GUI if the button is not in the correct parent or position
+            frame:Destroy()
+            frame = Instance.new("Frame")
+            frame.Name = "ButtonFrame"
+            frame.Size = UDim2.new(0, 200, 0, 80)
+            frame.Position = UDim2.new(0, 20, 1, -100) -- Bottom left corner
+            frame.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
+            frame.Parent = screenGui
+
+            toggleButton.Parent = frame
+            textBox.Parent = frame
+            minimizeButton.Parent = frame
+
+            enableDragging(frame)
+            toggleButton.MouseButton1Click:Connect(toggleWalkspeedScript)
+            minimizeButton.MouseButton1Click:Connect(toggleMinimize)
+        end
+        wait(1)
+    end
+end
+
 enableDragging(frame)
-
--- Connect the button's click event to toggle the walkspeed script
 toggleButton.MouseButton1Click:Connect(toggleWalkspeedScript)
-
--- Connect the minimize button's click event to toggle minimize/restore
 minimizeButton.MouseButton1Click:Connect(toggleMinimize)
+
+-- Start the checkButtonState coroutine
+coroutine.wrap(checkButtonState)()
+

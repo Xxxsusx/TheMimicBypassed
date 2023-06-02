@@ -29,7 +29,7 @@ local walkspeedEnabled = false -- Variable to track the state of walkspeed scrip
 
 -- Function to set the walkspeed
 local function setWalkspeed(player)
-    if player.Character then
+    if player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 then
         player.Character.Humanoid.WalkSpeed = walkspeedEnabled and STORED_SPEED or DEFAULT_SPEED
     end
 end
@@ -51,7 +51,9 @@ local function toggleWalkspeedScript()
     else
         -- Disable the script
         for _, player in ipairs(game.Players:GetPlayers()) do
-            player.Character.Humanoid.WalkSpeed = DEFAULT_SPEED -- Set to default walkspeed
+            if player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 then
+                player.Character.Humanoid.WalkSpeed = DEFAULT_SPEED -- Set to default walkspeed
+            end
         end
     end
 end
@@ -59,7 +61,8 @@ end
 -- Connect the function to the button's MouseButton1Click event
 button.MouseButton1Click:Connect(toggleWalkspeedScript)
 
--- Dragging functionality
+-- Dragging functionality (unchanged)
+
 local dragging
 local dragStart
 local startPos

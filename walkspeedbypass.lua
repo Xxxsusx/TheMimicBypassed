@@ -79,14 +79,17 @@ local function toggleWalkspeedScript()
     end
 end
 
--- Function to toggle the minimize/restore
+
+-- Function to minimize or restore the frame
 local function toggleMinimize()
-    if minimizeButton.Text == "-" then
-        frame.Size = UDim2.new(0, 20, 0, 20) -- Minimize the frame size
+    if frame.Size == UDim2.new(0, 200, 0, 80) then
+        frame.Size = UDim2.new(0, 100, 0, 40)
         minimizeButton.Text = "+"
+        minimizeButton.Position = UDim2.new(1, -25, 1, -25) -- Bottom right corner
     else
-        frame.Size = UDim2.new(0, 200, 0, 80) -- Restore the frame size
+        frame.Size = UDim2.new(0, 200, 0, 80)
         minimizeButton.Text = "-"
+        minimizeButton.Position = UDim2.new(1, -25, 0, 15) -- Top right corner
     end
 end
 

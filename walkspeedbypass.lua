@@ -27,12 +27,11 @@ local textBox = Instance.new("TextBox")
 textBox.Name = "SpeedTextBox"
 textBox.Size = UDim2.new(0, 150, 0, 25)
 textBox.Position = UDim2.new(0.5, 5, 0, 45) -- Adjusted position
-textBox.BackgroundTransparency = 1 -- Set transparency to 1 (completely transparent)
-textBox.TextColor3 = Color3.new(1, 1, 1) -- White text color
+textBox.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cyan background
+textBox.TextColor3 = Color3.new(0, 0, 0) -- Black text color
 textBox.Font = Enum.Font.GothamBold -- Set font to GothamBold
 textBox.TextSize = 14 -- Adjust the font size
 textBox.PlaceholderText = "Set speed (13-200)"
-textBox.Visible = false -- Initially hidden
 textBox.Parent = frame
 
 -- Create a Minimize button

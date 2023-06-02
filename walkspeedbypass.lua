@@ -1,69 +1,63 @@
--- Gui to Lua
--- Version: 3.2
+-- Create a ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer.PlayerGui
 
--- Instances:
+-- Create a Frame as the background
+local frame = Instance.new("Frame")
+frame.Name = "ButtonFrame"
+frame.Size = UDim2.new(0.348247588, 0, 0.273972601, 0)
+frame.Position = UDim2.new(0.322062045, 0, 0.33561644, 0)
+frame.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
+frame.Parent = screenGui
 
-local ScreenGui = Instance.new("ScreenGui")
-local FirstButtonFrame = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
-local SecondButtonFrame = Instance.new("Frame")
+UICorner.Parent = frame
+
+local secondFrame = Instance.new("Frame")
+secondFrame.Name = "SecondButtonFrame"
+secondFrame.Size = UDim2.new(0.963597417, 0, 0.904999971, 0)
+secondFrame.Position = UDim2.new(0.0192719493, 0, 0.0500000007, 0)
+secondFrame.BackgroundColor3 = Color3.new(30, 30, 30)
+secondFrame.Parent = frame
+
 local UICorner_2 = Instance.new("UICorner")
+UICorner_2.Parent = secondFrame
+
+-- Create a TextButton inside the frame for enable/disable
 local toggleButton = Instance.new("TextButton")
-local textBox = Instance.new("TextBox")
-local minimizeButton = Instance.new("TextButton")
-
--- Properties:
-
-ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-FirstButtonFrame.Name = "FirstButtonFrame"
-FirstButtonFrame.Parent = ScreenGui
-FirstButtonFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-FirstButtonFrame.Position = UDim2.new(0.322062045, 0, 0.33561644, 0)
-FirstButtonFrame.Size = UDim2.new(0.348247588, 0, 0.273972601, 0)
-FirstButtonFrame.Active = true
-FirstButtonFrame.Draggable = true
-
-UICorner.Parent = FirstButtonFrame
-
-SecondButtonFrame.Name = "SecondButtonFrame"
-SecondButtonFrame.Parent = FirstButtonFrame
-SecondButtonFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-SecondButtonFrame.Position = UDim2.new(0.0192719493, 0, 0.0500000007, 0)
-SecondButtonFrame.Size = UDim2.new(0.963597417, 0, 0.904999971, 0)
-
-UICorner_2.Parent = SecondButtonFrame
-
 toggleButton.Name = "ToggleButton"
-toggleButton.Parent = SecondButtonFrame
+toggleButton.Size = UDim2.new(0.5, -10, 1, -10) -- Smaller size with padding
+toggleButton.Position = UDim2.new(0, 5, 0, 5) -- Padding
 toggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green background
 toggleButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
 toggleButton.Font = Enum.Font.GothamBold -- Set font to GothamBold
 toggleButton.TextSize = 18 -- Adjust the font size
-toggleButton.Size = UDim2.new(0.5, -10, 1, -10) -- Smaller size with padding
-toggleButton.Position = UDim2.new(0, 5, 0, 5) -- Padding
 toggleButton.Text = "ENABLE"
+toggleButton.Parent = secondFrame
 
+-- Create a TextBox for setting the speed
+local textBox = Instance.new("TextBox")
 textBox.Name = "SpeedTextBox"
-textBox.Parent = SecondButtonFrame
+textBox.Size = UDim2.new(0, 150, 0, 25)
+textBox.Position = UDim2.new(0.5, 5, 0, 35) -- Below the toggle button
 textBox.BackgroundColor3 = Color3.new(1, 1, 1) -- White background
 textBox.TextColor3 = Color3.new(0, 0, 0) -- Black text color
 textBox.Font = Enum.Font.GothamBold -- Set font to GothamBold
 textBox.TextSize = 14 -- Adjust the font size
-textBox.Size = UDim2.new(0, 150, 0, 25)
-textBox.Position = UDim2.new(0.5, 5, 0, 35) -- Below the toggle button
 textBox.PlaceholderText = "Set speed (13-200)"
+textBox.Parent = secondFrame
 
+-- Create a Minimize button
+local minimizeButton = Instance.new("TextButton")
 minimizeButton.Name = "MinimizeButton"
-minimizeButton.Parent = SecondButtonFrame
+minimizeButton.Size = UDim2.new(0, 20, 0, 20)
+minimizeButton.Position = UDim2.new(1, -25, 1, -25) -- Bottom right corner
 minimizeButton.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
 minimizeButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
 minimizeButton.Font = Enum.Font.GothamBold -- Set font to GothamBold
-minimizeButton.TextSize = 18 -- Adjust the font size
-minimizeButton.Size = UDim2.new(0, 30, 0, 30) -- Square size
-minimizeButton.Position = UDim2.new(1, -35, 0, 5) -- Top right corner
+minimizeButton.TextSize = 14 -- Adjust the font size
 minimizeButton.Text = "-"
+minimizeButton.Parent = secondFrame
 
 -- Walkspeed configuration
 local MIN_SPEED = 13 -- Minimum walkspeed value
@@ -111,19 +105,60 @@ end
 
 -- Function to minimize or restore the frame
 local function toggleMinimize()
-    if SecondButtonFrame.Size == UDim2.new(0.963597417, 0, 0.904999971, 0) then
-        SecondButtonFrame.Size = UDim2.new(0.963597417, 0, 0, 40)
+    if secondFrame.Size == UDim2.new(0.963597417, 0, 0.904999971, 0) then
+        secondFrame.Size = UDim2.new(0.963597417, 0, 0, 40)
         minimizeButton.Text = "+"
-        minimizeButton.Position = UDim2.new(1, -35, 1, -35) -- Bottom right corner
+        minimizeButton.Position = UDim2.new(1, -25, 1, -25) -- Bottom right corner
     else
-        SecondButtonFrame.Size = UDim2.new(0.963597417, 0, 0.904999971, 0)
+        secondFrame.Size = UDim2.new(0.963597417, 0, 0.904999971, 0)
         minimizeButton.Text = "-"
-        minimizeButton.Position = UDim2.new(1, -35, 0, 5) -- Top right corner
+        minimizeButton.Position = UDim2.new(1, -25, 1, -25) -- Bottom right corner
     end
 end
 
--- Connect the function to the toggle button's MouseButton1Click event
+-- Function for draggable functionality
+local function enableDragging(frame)
+    local dragging
+    local dragInput
+    local dragStart
+    local startPos
+
+    local function update(input)
+        local delta = input.Position - dragStart
+        frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+
+    frame.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = frame.Position
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+
+    frame.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+
+    game:GetService("UserInputService").InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            update(input)
+        end
+    end)
+end
+
+enableDragging(frame)
+
+-- Connect the button's click event to toggle the walkspeed script
 toggleButton.MouseButton1Click:Connect(toggleWalkspeedScript)
 
--- Connect the function to the minimize button's MouseButton1Click event
+-- Connect the minimize button's click event to toggle minimize/restore
 minimizeButton.MouseButton1Click:Connect(toggleMinimize)

@@ -11,7 +11,7 @@ local minimizeButton = Instance.new("TextButton")
 -- Properties:
 
 FirstButtonFrame.Name = "FirstButtonFrame"
-FirstButtonFrame.Parent = game.StarterGui.ScreenGui
+FirstButtonFrame.Parent = game.Players.LocalPlayer.PlayerGui -- Parented to PlayerGui
 FirstButtonFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 FirstButtonFrame.Position = UDim2.new(0.322062045, 0, 0.33561644, 0)
 FirstButtonFrame.Size = UDim2.new(0.348247588, 0, 0.273972601, 0)
@@ -53,9 +53,9 @@ minimizeButton.Parent = SecondButtonFrame
 minimizeButton.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
 minimizeButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
 minimizeButton.Font = Enum.Font.GothamBold -- Set font to GothamBold
-minimizeButton.TextSize = 14 -- Adjust the font size
-minimizeButton.Size = UDim2.new(0, 20, 0, 20) -- Square size
-minimizeButton.Position = UDim2.new(1, -25, 1, -25) -- Bottom right corner
+minimizeButton.TextSize = 18 -- Adjust the font size
+minimizeButton.Size = UDim2.new(0, 30, 0, 30) -- Square size
+minimizeButton.Position = UDim2.new(1, -35, 1, -35) -- Bottom right corner
 minimizeButton.Text = "-"
 
 -- Walkspeed configuration
@@ -107,11 +107,11 @@ local function toggleMinimize()
     if SecondButtonFrame.Size == UDim2.new(0.963597417, 0, 0.904999971, 0) then
         SecondButtonFrame.Size = UDim2.new(0.963597417, 0, 0, 40)
         minimizeButton.Text = "+"
-        minimizeButton.Position = UDim2.new(1, -25, 1, -25) -- Bottom right corner
+        minimizeButton.Position = UDim2.new(1, -35, 1, -35) -- Bottom right corner
     else
         SecondButtonFrame.Size = UDim2.new(0.963597417, 0, 0.904999971, 0)
         minimizeButton.Text = "-"
-        minimizeButton.Position = UDim2.new(1, -25, 0, 15) -- Top right corner
+        minimizeButton.Position = UDim2.new(1, -35, 0, 5) -- Top right corner
     end
 end
 

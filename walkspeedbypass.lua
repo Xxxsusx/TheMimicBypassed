@@ -65,10 +65,7 @@ local function toggleWalkspeedScript()
     if walkspeedEnabled then
         local speed = tonumber(textBox.Text)
         if speed then
-            while walkspeedEnabled do
-                setWalkspeed(game.Players.LocalPlayer, speed)
-                wait(0.03) -- Delay to limit the walkspeed update frequency
-            end
+            setWalkspeed(game.Players.LocalPlayer, speed)
             toggleButton.Text = "DISABLE"
             toggleButton.BackgroundColor3 = Color3.new(1, 0, 0) -- Red background
         end

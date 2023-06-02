@@ -71,7 +71,7 @@ local function toggleWalkspeedScript()
         -- Disable the script
         for _, player in ipairs(game.Players:GetPlayers()) do
             if player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 then
-                player.Character.Humanoid.WalkSpeed = MIN_SPEED -- Set to default walkspeed
+                setWalkspeed(player, MIN_SPEED) -- Set to minimum walkspeed
             end
         end
     end
@@ -81,7 +81,11 @@ end
 local function updateSliderValue(value)
     local speed = math.floor(MIN_SPEED + (MAX_SPEED - MIN_SPEED) * value)
     slider.Text = "Walkspeed: " .. speed
-    setWalkspeed(game.Players.LocalPlayer, speed)
+    if walkspeedEnabled then
+        for _, player in ipairs(game.Players:GetPlayers()) do
+            setWalkspeed(player, speed)
+        end
+    end
 end
 
 -- Slider functionality

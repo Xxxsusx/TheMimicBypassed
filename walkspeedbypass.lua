@@ -5,46 +5,89 @@ screenGui.Parent = game.Players.LocalPlayer.PlayerGui
 -- Create a Frame as the background
 local frame = Instance.new("Frame")
 frame.Name = "ButtonFrame"
-frame.Size = UDim2.new(0, 200, 0, 80)
-frame.Position = UDim2.new(0, 20, 1, -100) -- Bottom left corner
+frame.Size = UDim2.new(0, 250, 0, 200) -- Updated size
+frame.Position = UDim2.new(0, 20, 1, -220) -- Updated position
 frame.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
 frame.Parent = screenGui
 
--- Create a TextButton inside the frame for enable/disable
-local toggleButton = Instance.new("TextButton")
-toggleButton.Name = "ToggleButton"
-toggleButton.Size = UDim2.new(0.5, -10, 1, -10) -- Smaller size with padding
-toggleButton.Position = UDim2.new(0, 5, 0, 5) -- Padding
-toggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green background
-toggleButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
-toggleButton.Font = Enum.Font.GothamBold -- Set font to GothamBold
-toggleButton.TextSize = 18 -- Adjust the font size
-toggleButton.Text = "ENABLE"
-toggleButton.Parent = frame
+-- Create rounded corners for the frame
+local frameCorner = Instance.new("UICorner")
+frameCorner.CornerRadius = UDim.new(0, 10) -- Adjust the corner radius as needed
+frameCorner.Parent = frame
+
+-- Create the vertical tabs
+local tabsContainer = Instance.new("Frame")
+tabsContainer.Name = "TabsContainer"
+tabsContainer.Size = UDim2.new(0, 50, 1, 0) -- Width of the tabs
+tabsContainer.Position = UDim2.new(0, 0, 0, 0)
+tabsContainer.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
+tabsContainer.Parent = frame
+
+-- Create the first tab (BOOK 2)
+local bookTab = Instance.new("TextButton")
+bookTab.Name = "BookTab"
+bookTab.Size = UDim2.new(1, 0, 0.2, 0) -- Adjust the height of each tab
+bookTab.Position = UDim2.new(0, 0, 0, 0)
+bookTab.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
+bookTab.TextColor3 = Color3.new(1, 1, 1) -- White text color
+bookTab.Font = Enum.Font.GothamBold
+bookTab.TextSize = 14 -- Adjust the font size
+bookTab.Text = "BOOK 2"
+bookTab.Parent = tabsContainer
+
+-- Create the second tab (TOOLS)
+local toolsTab = Instance.new("TextButton")
+toolsTab.Name = "ToolsTab"
+toolsTab.Size = UDim2.new(1, 0, 0.2, 0) -- Adjust the height of each tab
+toolsTab.Position = UDim2.new(0, 0, 0.2, 0)
+toolsTab.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
+toolsTab.TextColor3 = Color3.new(1, 1, 1) -- White text color
+toolsTab.Font = Enum.Font.GothamBold
+toolsTab.TextSize = 14 -- Adjust the font size
+toolsTab.Text = "TOOLS"
+toolsTab.Parent = tabsContainer
+
+-- Create the third tab (VISUAL)
+local visualTab = Instance.new("TextButton")
+visualTab.Name = "VisualTab"
+visualTab.Size = UDim2.new(1, 0, 0.2, 0) -- Adjust the height of each tab
+visualTab.Position = UDim2.new(0, 0, 0.4, 0)
+visualTab.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
+visualTab.TextColor3 = Color3.new(1, 1, 1) -- White text color
+visualTab.Font = Enum.Font.GothamBold
+visualTab.TextSize = 14 -- Adjust the font size
+visualTab.Text = "VISUAL"
+visualTab.Parent = tabsContainer
+
+-- Create a container for the content area
+local contentContainer = Instance.new("Frame")
+contentContainer.Name = "ContentContainer"
+contentContainer.Size = UDim2.new(0.8, -60, 1, 0) -- Adjust the size based on the number of tabs
+contentContainer.Position = UDim2.new(0.2, 10, 0, 0) -- Leave space for the tabs
+contentContainer.BackgroundColor3 = Color3.new(30/255, 30/255, 30/255) -- Cyan background
+contentContainer.Parent = frame
+
+-- Create rounded corners for the content container
+local contentContainerCorner = Instance.new("UICorner")
+contentContainerCorner.CornerRadius = UDim.new(0, 10) -- Adjust the corner radius as needed
+contentContainerCorner.Parent = contentContainer
 
 -- Create a TextBox for setting the speed
 local textBox = Instance.new("TextBox")
 textBox.Name = "SpeedTextBox"
-textBox.Size = UDim2.new(0, 150, 0, 25)
-textBox.Position = UDim2.new(0.5, 5, 0, 45) -- Adjusted position
+textBox.Size = UDim2.new(0.7, 0, 0.1, 0) -- Adjust the size
+textBox.Position = UDim2.new(0.15, 0, 0.4, 0) -- Adjust the position
 textBox.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cyan background
 textBox.TextColor3 = Color3.new(0, 0, 0) -- Black text color
 textBox.Font = Enum.Font.GothamBold -- Set font to GothamBold
 textBox.TextSize = 14 -- Adjust the font size
 textBox.PlaceholderText = "Set speed (13-200)"
-textBox.Parent = frame
+textBox.Parent = contentContainer
 
--- Create a Minimize button
-local minimizeButton = Instance.new("TextButton")
-minimizeButton.Name = "MinimizeButton"
-minimizeButton.Size = UDim2.new(0, 20, 0, 20)
-minimizeButton.Position = UDim2.new(1, -25, 0, 5) -- Top right corner
-minimizeButton.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
-minimizeButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
-minimizeButton.Font = Enum.Font.GothamBold -- Set font to GothamBold
-minimizeButton.TextSize = 14 -- Adjust the font size
-minimizeButton.Text = "-"
-minimizeButton.Parent = frame
+-- Create rounded corners for the TextBox
+local textBoxCorner = Instance.new("UICorner")
+textBoxCorner.CornerRadius = UDim.new(0, 5) -- Adjust the corner radius as needed
+textBoxCorner.Parent = textBox
 
 -- Walkspeed configuration
 local MIN_SPEED = 13 -- Minimum walkspeed value

@@ -5,8 +5,8 @@ screenGui.Parent = game.Players.LocalPlayer.PlayerGui
 -- Create a Frame as the background
 local frame = Instance.new("Frame")
 frame.Name = "ButtonFrame"
-frame.Size = UDim2.new(0, 250, 0, 200) -- Updated size
-frame.Position = UDim2.new(0, 20, 1, -220) -- Updated position
+frame.Size = UDim2.new(0, 200, 0, 80) -- Updated size
+frame.Position = UDim2.new(0, 20, 1, -100) -- Updated position
 frame.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
 frame.Parent = screenGui
 
@@ -15,62 +15,48 @@ local frameCorner = Instance.new("UICorner")
 frameCorner.CornerRadius = UDim.new(0, 10) -- Adjust the corner radius as needed
 frameCorner.Parent = frame
 
--- Create the vertical tabs
-local tabsContainer = Instance.new("Frame")
-tabsContainer.Name = "TabsContainer"
-tabsContainer.Size = UDim2.new(0, 50, 1, 0) -- Width of the tabs
-tabsContainer.Position = UDim2.new(0, 0, 0, 0)
-tabsContainer.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
-tabsContainer.Parent = frame
+-- Create the toggle button (ENABLE/DISABLE)
+local toggleButton = Instance.new("TextButton")
+toggleButton.Name = "ToggleButton"
+toggleButton.Size = UDim2.new(0.4, 0, 0.3, 0) -- Adjust the size
+toggleButton.Position = UDim2.new(0.05, 0, 0.3, 0) -- Adjust the position
+toggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green background
+toggleButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
+toggleButton.Font = Enum.Font.GothamBold
+toggleButton.TextSize = 14 -- Adjust the font size
+toggleButton.Text = "ENABLE"
+toggleButton.Parent = frame
 
--- Create the first tab (BOOK 2)
-local bookTab = Instance.new("TextButton")
-bookTab.Name = "BookTab"
-bookTab.Size = UDim2.new(1, 0, 0.2, 0) -- Adjust the height of each tab
-bookTab.Position = UDim2.new(0, 0, 0, 0)
-bookTab.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
-bookTab.TextColor3 = Color3.new(1, 1, 1) -- White text color
-bookTab.Font = Enum.Font.GothamBold
-bookTab.TextSize = 14 -- Adjust the font size
-bookTab.Text = "BOOK 2"
-bookTab.Parent = tabsContainer
+-- Create the minimize button
+local minimizeButton = Instance.new("TextButton")
+minimizeButton.Name = "MinimizeButton"
+minimizeButton.Size = UDim2.new(0.1, 0, 0.1, 0) -- Adjust the size
+minimizeButton.Position = UDim2.new(0.85, 0, 0.05, 0) -- Adjust the position
+minimizeButton.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
+minimizeButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
+minimizeButton.Font = Enum.Font.GothamBold
+minimizeButton.TextSize = 14 -- Adjust the font size
+minimizeButton.Text = "-"
+minimizeButton.Parent = frame
 
--- Create the second tab (TOOLS)
-local toolsTab = Instance.new("TextButton")
-toolsTab.Name = "ToolsTab"
-toolsTab.Size = UDim2.new(1, 0, 0.2, 0) -- Adjust the height of each tab
-toolsTab.Position = UDim2.new(0, 0, 0.2, 0)
-toolsTab.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
-toolsTab.TextColor3 = Color3.new(1, 1, 1) -- White text color
-toolsTab.Font = Enum.Font.GothamBold
-toolsTab.TextSize = 14 -- Adjust the font size
-toolsTab.Text = "TOOLS"
-toolsTab.Parent = tabsContainer
+-- Create the close button (for PC users only)
+local closeButtonText = "CLOSE"
+local closeButtonVisible = not game:GetService("UserInputService").TouchEnabled -- Only visible for non-touch devices
+if closeButtonVisible then
+    closeButtonText = "X"
+end
 
--- Create the third tab (VISUAL)
-local visualTab = Instance.new("TextButton")
-visualTab.Name = "VisualTab"
-visualTab.Size = UDim2.new(1, 0, 0.2, 0) -- Adjust the height of each tab
-visualTab.Position = UDim2.new(0, 0, 0.4, 0)
-visualTab.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
-visualTab.TextColor3 = Color3.new(1, 1, 1) -- White text color
-visualTab.Font = Enum.Font.GothamBold
-visualTab.TextSize = 14 -- Adjust the font size
-visualTab.Text = "VISUAL"
-visualTab.Parent = tabsContainer
-
--- Create a container for the content area
-local contentContainer = Instance.new("Frame")
-contentContainer.Name = "ContentContainer"
-contentContainer.Size = UDim2.new(0.8, -60, 1, 0) -- Adjust the size based on the number of tabs
-contentContainer.Position = UDim2.new(0.2, 10, 0, 0) -- Leave space for the tabs
-contentContainer.BackgroundColor3 = Color3.new(30/255, 30/255, 30/255) -- Cyan background
-contentContainer.Parent = frame
-
--- Create rounded corners for the content container
-local contentContainerCorner = Instance.new("UICorner")
-contentContainerCorner.CornerRadius = UDim.new(0, 10) -- Adjust the corner radius as needed
-contentContainerCorner.Parent = contentContainer
+local closeButton = Instance.new("TextButton")
+closeButton.Name = "CloseButton"
+closeButton.Size = UDim2.new(0.1, 0, 0.1, 0) -- Adjust the size
+closeButton.Position = UDim2.new(0.95, 0, 0.05, 0) -- Adjust the position
+closeButton.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
+closeButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
+closeButton.Font = Enum.Font.GothamBold
+closeButton.TextSize = 14 -- Adjust the font size
+closeButton.Text = closeButtonText
+closeButton.Visible = closeButtonVisible
+closeButton.Parent = frame
 
 -- Create a TextBox for setting the speed
 local textBox = Instance.new("TextBox")
@@ -82,7 +68,8 @@ textBox.TextColor3 = Color3.new(0, 0, 0) -- Black text color
 textBox.Font = Enum.Font.GothamBold -- Set font to GothamBold
 textBox.TextSize = 14 -- Adjust the font size
 textBox.PlaceholderText = "Set speed (13-200)"
-textBox.Parent = contentContainer
+textBox.Visible = true -- Show the textBox by default
+textBox.Parent = frame
 
 -- Create rounded corners for the TextBox
 local textBoxCorner = Instance.new("UICorner")
@@ -132,6 +119,52 @@ local function toggleMinimize()
         frame.Size = UDim2.new(0, 200, 0, 80) -- Restore the frame size
         minimizeButton.Text = "-"
         textBox.Visible = true -- Show the textBox when frame is restored
+    end
+end
+
+-- Function to close the interface (for PC users only)
+local function closeInterface()
+    if closeButtonVisible then
+        -- Show a pop-up message
+        local popup = Instance.new("ScreenGui")
+        popup.Name = "ClosePopup"
+        popup.Parent = game.Players.LocalPlayer.PlayerGui
+
+        local popupFrame = Instance.new("Frame")
+        popupFrame.Name = "PopupFrame"
+        popupFrame.Size = UDim2.new(0.3, 0, 0.2, 0)
+        popupFrame.Position = UDim2.new(0.5, -popupFrame.Size.X.Offset / 2, 0.5, -popupFrame.Size.Y.Offset / 2)
+        popupFrame.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
+        popupFrame.Parent = popup
+
+        local popupText = Instance.new("TextLabel")
+        popupText.Name = "PopupText"
+        popupText.Size = UDim2.new(0.9, 0, 0.7, 0)
+        popupText.Position = UDim2.new(0.05, 0, 0.15, 0)
+        popupText.BackgroundTransparency = 1 -- Transparent background
+        popupText.TextColor3 = Color3.new(1, 1, 1) -- White text color
+        popupText.Font = Enum.Font.GothamBold
+        popupText.TextSize = 14 -- Adjust the font size
+        popupText.Text = "Interface Closed\n\nPress the right shift key to open it again"
+        popupText.Parent = popupFrame
+
+        -- Fade in animation
+        for i = 0, 1, 0.1 do
+            popupFrame.BackgroundTransparency = i
+            popupText.TextTransparency = i
+            wait(0.1)
+        end
+
+        wait(3) -- Display the message for 3 seconds
+
+        -- Fade out animation
+        for i = 1, 0, -0.1 do
+            popupFrame.BackgroundTransparency = i
+            popupText.TextTransparency = i
+            wait(0.1)
+        end
+
+        popup:Destroy() -- Remove the popup from the GUI
     end
 end
 
@@ -187,19 +220,24 @@ local function checkButtonState()
             toggleButton.Parent = frame
             textBox.Parent = frame
             minimizeButton.Parent = frame
+            closeButton.Parent = frame
 
             enableDragging(frame)
             toggleButton.MouseButton1Click:Connect(toggleWalkspeedScript)
             minimizeButton.MouseButton1Click:Connect(toggleMinimize)
+            closeButton.MouseButton1Click:Connect(closeInterface)
         end
-        wait(1)
+        wait(1) -- Check the button state every second
     end
 end
 
+-- Enable dragging of the frame
 enableDragging(frame)
+
+-- Connect the button events
 toggleButton.MouseButton1Click:Connect(toggleWalkspeedScript)
 minimizeButton.MouseButton1Click:Connect(toggleMinimize)
+closeButton.MouseButton1Click:Connect(closeInterface)
 
--- Start the checkButtonState coroutine
-coroutine.wrap(checkButtonState)()
-
+-- Start checking the button state
+spawn(checkButtonState)

@@ -27,7 +27,7 @@ toggleButton.Parent = frame
 -- Create a TextBox for setting the speed
 local textBox = Instance.new("TextBox")
 textBox.Name = "SpeedTextBox"
-textBox.Size = UDim2.new(0, 150, 0, 25)
+textBox.Size = UDim2.new(0, 84, 0, 25)
 textBox.Position = UDim2.new(0.5, 5, 0, 45) -- Adjusted position
 textBox.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cyan background
 textBox.TextColor3 = Color3.new(0, 0, 0) -- Black text color

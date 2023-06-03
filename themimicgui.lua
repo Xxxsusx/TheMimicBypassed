@@ -70,9 +70,9 @@ local function toggleWalkspeedScript()
             while walkspeedEnabled do
                 setWalkspeed(game.Players.LocalPlayer, speed)
                 wait(0.03) -- Add a small delay of 0.03 seconds
+                toggleButton.Text = "DISABLE"
+                toggleButton.BackgroundColor3 = Color3.new(1, 0, 0) -- Red background
             end
-            toggleButton.Text = "DISABLE"
-            toggleButton.BackgroundColor3 = Color3.new(1, 0, 0) -- Red background
         end
     else
         setWalkspeed(game.Players.LocalPlayer, MIN_SPEED)
@@ -80,6 +80,7 @@ local function toggleWalkspeedScript()
         toggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green background
     end
 end
+
 
 
 

@@ -1,7 +1,7 @@
 -- Create a ScreenGui
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "WalkspeedGUI" -- Give a unique name to the ScreenGui
-screenGui.Parent = game.Players.LocalPlayer.PlayerGui
+screenGui.Parent = game:GetService("CoreGui") -- Parent under CoreGui instead of PlayerGui
 
 -- Create a Frame as the background
 local frame = Instance.new("Frame")
@@ -33,7 +33,7 @@ textBox.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cyan background
 textBox.TextColor3 = Color3.new(0, 0, 0) -- Black text color
 textBox.Font = Enum.Font.GothamBold -- Set font to GothamBold
 textBox.TextSize = 14 -- Adjust the font size
-textBox.PlaceholderText = "Set speed (13-400)"
+textBox.PlaceholderText = "Set speed (13-500)"
 textBox.Parent = frame
 
 -- Create a Minimize button
@@ -50,7 +50,7 @@ minimizeButton.Parent = frame
 
 -- Walkspeed configuration
 local MIN_SPEED = 13 -- Minimum walkspeed value
-local MAX_SPEED = 400 -- Maximum walkspeed value
+local MAX_SPEED = 500 -- Maximum walkspeed value
 local walkspeedEnabled = false -- Variable to track the state of walkspeed script
 
 -- Function to set the walkspeed
@@ -67,11 +67,12 @@ local function toggleWalkspeedScript()
     if walkspeedEnabled then
         local speed = tonumber(textBox.Text)
         if speed then
+            toggleButton.Text = "DISABLE"
+            toggleButton.BackgroundColor3 = Color3.new(1, 0, 0) -- Red background
+
             while walkspeedEnabled do
                 setWalkspeed(game.Players.LocalPlayer, speed)
                 wait(0.03) -- Add a small delay of 0.03 seconds
-                toggleButton.Text = "DISABLE"
-                toggleButton.BackgroundColor3 = Color3.new(1, 0, 0) -- Red background
             end
         end
     else
@@ -80,6 +81,7 @@ local function toggleWalkspeedScript()
         toggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green background
     end
 end
+
 
 
 

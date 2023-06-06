@@ -71,6 +71,7 @@ local function toggleWalkspeedScript()
             toggleButton.BackgroundColor3 = Color3.new(1, 0, 0) -- Red background
 
             while walkspeedEnabled do
+                wait(0.03)
                 setWalkspeed(game.Players.LocalPlayer, speed)
             end
         end

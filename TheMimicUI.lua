@@ -1,52 +1,425 @@
--- Create a ScreenGui
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "WalkspeedGUI" -- Give a unique name to the ScreenGui
-screenGui.Parent = game:GetService("CoreGui") -- Parent under CoreGui instead of PlayerGui
+local TheMimicUI = Instance.new("ScreenGui")
+local ButtonFrame = Instance.new("Frame")
+local UIStroke = Instance.new("UIStroke")
+local ToggleClosebutton = Instance.new("TextButton")
+local MinimizeButton = Instance.new("TextButton")
+local UIGradient = Instance.new("UIGradient")
+local Title = Instance.new("TextLabel")
+local ToggleButtons = Instance.new("Folder")
+local FOVToggleButton = Instance.new("TextButton")
+local XRayToggleButton = Instance.new("TextButton")
+local ESPToggleButton = Instance.new("TextButton")
+local Unsupported = Instance.new("BoolValue")
+local ConfirmationValue = Instance.new("BoolValue")
+local ProximityToggleButton = Instance.new("TextButton")
+local SpeedToggleButton = Instance.new("TextButton")
+local NoclipToggleButton = Instance.new("TextButton")
+local LabelTexts = Instance.new("Folder")
+local FOVLabel = Instance.new("TextLabel")
+local ESPLabel = Instance.new("TextLabel")
+local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+local XRayLabel = Instance.new("TextLabel")
+local ProximityLabel = Instance.new("TextLabel")
+local SpeedhackLabel = Instance.new("TextLabel")
+local TextLabel = Instance.new("TextLabel")
+local TextBoxes = Instance.new("Folder")
+local FOVTextBox = Instance.new("TextBox")
+local SpeedTextBox = Instance.new("TextBox")
+local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+local WarningFrame = Instance.new("Frame")
+local UIGradient_2 = Instance.new("UIGradient")
+local YES = Instance.new("TextButton")
+local WarningLabel = Instance.new("TextLabel")
+local NO = Instance.new("TextButton")
+local UnsupportedFrame = Instance.new("Frame")
+local UIGradient3 = Instance.new("UIGradient")
+local OK = Instance.new("TextButton")
+local ErrorCodeLabel = Instance.new("TextLabel")
+local LogsLabel = Instance.new("TextLabel")
+local StatusLabel = Instance.new("TextLabel")
+local SolutionLabel = Instance.new("TextLabel")
 
--- Create a Frame as the background
-local frame = Instance.new("Frame")
-frame.Name = "ButtonFrame"
-frame.Size = UDim2.new(0, 200, 0, 80)
-frame.Position = UDim2.new(0, 20, 1, -100) -- Bottom left corner
-frame.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
-frame.Active = true -- Allow user input
-frame.Parent = screenGui
+TheMimicUI.Name = "TheMimicUI"
+TheMimicUI.Parent = game.Players.LocalPlayer.PlayerGui
+TheMimicUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
--- Create a TextButton inside the frame for enable/disable
-local toggleButton = Instance.new("TextButton")
-toggleButton.Name = "ToggleButton"
-toggleButton.Size = UDim2.new(0.5, -10, 1, -10) -- Smaller size with padding
-toggleButton.Position = UDim2.new(0, 5, 0, 5) -- Padding
-toggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green background
-toggleButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
-toggleButton.Font = Enum.Font.GothamBold -- Set font to GothamBold
-toggleButton.TextSize = 18 -- Adjust the font size
-toggleButton.Text = "ENABLE"
-toggleButton.Parent = frame
+ButtonFrame.Name = "ButtonFrame"
+ButtonFrame.Parent = TheMimicUI
+ButtonFrame.Active = true
+ButtonFrame.BackgroundColor3 = Color3.fromRGB(29, 29, 29)
+ButtonFrame.BackgroundTransparency = 0.250
+ButtonFrame.Position = UDim2.new(0.214367136, 0, 0.114239849, 0)
+ButtonFrame.Size = UDim2.new(0.570125401, 0, 0.770712912, 0)
 
--- Create a TextBox for setting the speed
-local textBox = Instance.new("TextBox")
-textBox.Name = "SpeedTextBox"
-textBox.Size = UDim2.new(0, 84, 0, 25)
-textBox.Position = UDim2.new(0.5, 5, 0, 45) -- Adjusted position
-textBox.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- Cyan background
-textBox.TextColor3 = Color3.new(0, 0, 0) -- Black text color
-textBox.Font = Enum.Font.GothamBold -- Set font to GothamBold
-textBox.TextSize = 14 -- Adjust the font size
-textBox.PlaceholderText = "Set speed (13-500)"
-textBox.Parent = frame
+UIStroke.Name = "UIStroke"
+UIStroke.Parent = ButtonFrame
+UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+UIStroke.Color = Color3.fromRGB(35, 35, 35)
+UIStroke.LineJoinMode = Enum.LineJoinMode.Round
+UIStroke.Transparency = 0
+UIStroke.Enabled = true
 
--- Create a Minimize button
-local minimizeButton = Instance.new("TextButton")
-minimizeButton.Name = "MinimizeButton"
-minimizeButton.Size = UDim2.new(0, 20, 0, 20)
-minimizeButton.Position = UDim2.new(1, -25, 0, 5) -- Top right corner
-minimizeButton.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
-minimizeButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
-minimizeButton.Font = Enum.Font.GothamBold -- Set font to GothamBold
-minimizeButton.TextSize = 14 -- Adjust the font size
-minimizeButton.Text = "-"
-minimizeButton.Parent = frame
+MinimizeButton.Name = "MinimizeButton"
+MinimizeButton.Parent = ButtonFrame
+MinimizeButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MinimizeButton.Position = UDim2.new(0.949999988, 0, 0.0125000011, 0)
+MinimizeButton.Size = UDim2.new(0.0400000028, 0, 0.0500000045, 0)
+MinimizeButton.Font = Enum.Font.GothamBold
+MinimizeButton.Text = "X"
+MinimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+MinimizeButton.TextSize = 14.000
+
+ToggleClosebutton.Name = "ToggleButton"
+ToggleClosebutton.Size = UDim2.new(0, 100,0, 70) -- Smaller size with padding
+ToggleClosebutton.Position = UDim2.new(0, 5, 0, 5) -- Padding
+ToggleClosebutton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green background
+ToggleClosebutton.TextColor3 = Color3.new(1, 1, 1) -- White text color
+ToggleClosebutton.Font = Enum.Font.GothamBold -- Set font to GothamBold
+ToggleClosebutton.TextSize = 18 -- Adjust the font size
+ToggleClosebutton.Text = "REOPEN GUI"
+ToggleClosebutton.Visible = false
+ToggleClosebutton.Parent = TheMimicUI
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(34, 34, 34)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(65, 65, 65))}
+UIGradient.Parent = ButtonFrame
+
+Title.Name = "Title"
+Title.Parent = ButtonFrame
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1.000
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.BorderSizePixel = 0
+Title.Position = UDim2.new(0.289999992, 0, 0.0125000002, 0)
+Title.Size = UDim2.new(0.422000021, 0, 0.107500009, 0)
+Title.Font = Enum.Font.GothamBold
+Title.Text = "The Mimic UI"
+Title.TextColor3 = Color3.fromRGB(249, 249, 249)
+Title.TextScaled = true
+Title.TextSize = 14.000
+Title.TextWrapped = true
+
+ToggleButtons.Name = "ToggleButtons"
+ToggleButtons.Parent = ButtonFrame
+
+FOVToggleButton.Name = "FOVToggleButton"
+FOVToggleButton.Parent = ToggleButtons
+FOVToggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+FOVToggleButton.Position = UDim2.new(0.398000002, 9, 0.157499999, 90)
+FOVToggleButton.Size = UDim2.new(0.160000011, 0, 0.100000009, 0)
+FOVToggleButton.Font = Enum.Font.GothamBold
+FOVToggleButton.Text = "ENABLE"
+FOVToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+FOVToggleButton.TextSize = 18.000
+
+XRayToggleButton.Name = "XRayToggleButton"
+XRayToggleButton.Parent = ToggleButtons
+XRayToggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+XRayToggleButton.Position = UDim2.new(0.666000009, 9, 0.402500004, 90)
+XRayToggleButton.Size = UDim2.new(0.160000011, 0, 0.100000009, 0)
+XRayToggleButton.Font = Enum.Font.GothamBold
+XRayToggleButton.Text = "ENABLE"
+XRayToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+XRayToggleButton.TextSize = 18.000
+
+ESPToggleButton.Name = "ESPToggleButton"
+ESPToggleButton.Parent = ToggleButtons
+ESPToggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+ESPToggleButton.Position = UDim2.new(0.398000002, 9, 0.402500004, 90)
+ESPToggleButton.Size = UDim2.new(0.160000011, 0, 0.100000009, 0)
+ESPToggleButton.Font = Enum.Font.GothamBold
+ESPToggleButton.Text = "ON/OFF"
+ESPToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ESPToggleButton.TextSize = 18.000
+
+Unsupported.Name = "Unsupported"
+Unsupported.Parent = ESPToggleButton
+
+
+ProximityToggleButton.Name = "ProximityToggleButton"
+ProximityToggleButton.Parent = ToggleButtons
+ProximityToggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+ProximityToggleButton.Position = UDim2.new(0.666000009, 9, 0.157499999, 90)
+ProximityToggleButton.Size = UDim2.new(0.160000011, 0, 0.100000009, 0)
+ProximityToggleButton.Font = Enum.Font.GothamBold
+ProximityToggleButton.Text = "TURN ON"
+ProximityToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ProximityToggleButton.TextSize = 18.000
+
+ConfirmationValue.Name = "ConfirmationValue"
+ConfirmationValue.Parent = ProximityToggleButton
+
+SpeedToggleButton.Name = "SpeedToggleButton"
+SpeedToggleButton.Parent = ToggleButtons
+SpeedToggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+SpeedToggleButton.Position = UDim2.new(0.119999997, 9, 0.157499999, 90)
+SpeedToggleButton.Size = UDim2.new(0.160000011, 0, 0.100000009, 0)
+SpeedToggleButton.Font = Enum.Font.GothamBold
+SpeedToggleButton.Text = "ENABLE"
+SpeedToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+SpeedToggleButton.TextSize = 18.000
+
+NoclipToggleButton.Name = "NoclipToggleButton"
+NoclipToggleButton.Parent = ToggleButtons
+NoclipToggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+NoclipToggleButton.Position = UDim2.new(0.119999997, 9, 0.402500004, 90)
+NoclipToggleButton.Size = UDim2.new(0.160000011, 0, 0.100000009, 0)
+NoclipToggleButton.Font = Enum.Font.GothamBold
+NoclipToggleButton.Text = "ENABLE"
+NoclipToggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+NoclipToggleButton.TextSize = 18.000
+
+LabelTexts.Name = "LabelTexts"
+LabelTexts.Parent = ButtonFrame
+
+FOVLabel.Name = "FOVLabel"
+FOVLabel.Parent = LabelTexts
+FOVLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+FOVLabel.BackgroundTransparency = 1.000
+FOVLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+FOVLabel.BorderSizePixel = 0
+FOVLabel.Position = UDim2.new(0.39199999, 0, 0.204999998, 0)
+FOVLabel.Size = UDim2.new(0.206000015, 0, 0.0950000063, 0)
+FOVLabel.Font = Enum.Font.Gotham
+FOVLabel.Text = "Field Of View (BETA)"
+FOVLabel.TextColor3 = Color3.fromRGB(249, 249, 249)
+FOVLabel.TextScaled = true
+FOVLabel.TextSize = 14.000
+FOVLabel.TextWrapped = true
+
+ESPLabel.Name = "ESPLabel"
+ESPLabel.Parent = LabelTexts
+ESPLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESPLabel.BackgroundTransparency = 1.000
+ESPLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESPLabel.BorderSizePixel = 0
+ESPLabel.Position = UDim2.new(0.39199999, 0, 0.514999986, 0)
+ESPLabel.Size = UDim2.new(0.206000015, 0, 0.0950000063, 0)
+ESPLabel.Font = Enum.Font.Gotham
+ESPLabel.Text = "ESP (BETA)"
+ESPLabel.TextColor3 = Color3.fromRGB(249, 249, 249)
+ESPLabel.TextScaled = true
+ESPLabel.TextSize = 14.000
+ESPLabel.TextWrapped = true
+
+UITextSizeConstraint.Parent = ESPLabel
+UITextSizeConstraint.MaxTextSize = 38
+
+XRayLabel.Name = "XRayLabel"
+XRayLabel.Parent = LabelTexts
+XRayLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+XRayLabel.BackgroundTransparency = 1.000
+XRayLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+XRayLabel.BorderSizePixel = 0
+XRayLabel.Position = UDim2.new(0.660000026, 0, 0.514999986, 0)
+XRayLabel.Size = UDim2.new(0.206000015, 0, 0.0950000063, 0)
+XRayLabel.Font = Enum.Font.Gotham
+XRayLabel.Text = "XRay (BETA)"
+XRayLabel.TextColor3 = Color3.fromRGB(249, 249, 249)
+XRayLabel.TextScaled = true
+XRayLabel.TextSize = 14.000
+XRayLabel.TextWrapped = true
+
+ProximityLabel.Name = "ProximityLabel"
+ProximityLabel.Parent = LabelTexts
+ProximityLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ProximityLabel.BackgroundTransparency = 1.000
+ProximityLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ProximityLabel.BorderSizePixel = 0
+ProximityLabel.Position = UDim2.new(0.639999986, 0, 0.189999998, 0)
+ProximityLabel.Size = UDim2.new(0.246000022, 0, 0.172500014, 0)
+ProximityLabel.Font = Enum.Font.Gotham
+ProximityLabel.Text = "Instant Proximity Prompt (BETA)"
+ProximityLabel.TextColor3 = Color3.fromRGB(249, 249, 249)
+ProximityLabel.TextScaled = true
+ProximityLabel.TextSize = 14.000
+ProximityLabel.TextWrapped = true
+
+SpeedhackLabel.Name = "SpeedhackLabel"
+SpeedhackLabel.Parent = LabelTexts
+SpeedhackLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SpeedhackLabel.BackgroundTransparency = 1.000
+SpeedhackLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SpeedhackLabel.BorderSizePixel = 0
+SpeedhackLabel.Position = UDim2.new(0.114000037, 0, 0.204999983, 0)
+SpeedhackLabel.Size = UDim2.new(0.206000015, 0, 0.0950000063, 0)
+SpeedhackLabel.Font = Enum.Font.Gotham
+SpeedhackLabel.Text = "Bypass Speedhack"
+SpeedhackLabel.TextColor3 = Color3.fromRGB(249, 249, 249)
+SpeedhackLabel.TextScaled = true
+SpeedhackLabel.TextSize = 14.000
+SpeedhackLabel.TextWrapped = true
+
+TextLabel.Parent = LabelTexts
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0.132000044, 0, 0.519999981, 0)
+TextLabel.Size = UDim2.new(0.172000006, 0, 0.0900000036, 0)
+TextLabel.Font = Enum.Font.Gotham
+TextLabel.Text = "Noclip (BETA)"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 14.000
+TextLabel.TextWrapped = true
+
+TextBoxes.Name = "TextBoxes"
+TextBoxes.Parent = ButtonFrame
+
+FOVTextBox.Name = "FOVTextBox"
+FOVTextBox.Parent = TextBoxes
+FOVTextBox.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+FOVTextBox.Position = UDim2.new(0.40200001, 5, 0.1875, 45)
+FOVTextBox.Size = UDim2.new(0.168000013, 0, 0.0625000075, 0)
+FOVTextBox.Font = Enum.Font.GothamBold
+FOVTextBox.PlaceholderText = "Set FOV (70-120)"
+FOVTextBox.Text = ""
+FOVTextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+FOVTextBox.TextSize = 14.000
+
+SpeedTextBox.Name = "SpeedTextBox"
+SpeedTextBox.Parent = TextBoxes
+SpeedTextBox.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+SpeedTextBox.Position = UDim2.new(0.124000035, 5, 0.18749997, 45)
+SpeedTextBox.Size = UDim2.new(0.168000013, 0, 0.0625000075, 0)
+SpeedTextBox.Font = Enum.Font.GothamBold
+SpeedTextBox.PlaceholderText = "Set speed (13-500)"
+SpeedTextBox.Text = ""
+SpeedTextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+SpeedTextBox.TextSize = 14.000
+
+UIAspectRatioConstraint.Parent = ButtonFrame
+UIAspectRatioConstraint.AspectRatio = 1.250
+
+WarningFrame.Name = "WarningFrame"
+WarningFrame.Parent = TheMimicUI
+WarningFrame.Active = true
+WarningFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+WarningFrame.Position = UDim2.new(0.304446965, 0, 0.291100174, 0)
+WarningFrame.Size = UDim2.new(0.389965802, 0, 0.414258182, 0)
+WarningFrame.Visible = false
+
+UnsupportedFrame.Name = "UnsupportedFrame"
+UnsupportedFrame.Parent = TheMimicUI
+UnsupportedFrame.Active = true
+UnsupportedFrame.Visible = false
+UnsupportedFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+UnsupportedFrame.Position = UDim2.new(0.304446965, 0, 0.291100174, 0)
+UnsupportedFrame.Size = UDim2.new(0.389965802, 0, 0.414258182, 0)
+
+UIGradient3.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(34, 34, 34)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(65, 65, 65))}
+UIGradient3.Enabled = true
+UIGradient3.Parent = UnsupportedFrame
+
+OK.Name = "OK"
+OK.Parent = UnsupportedFrame
+OK.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+OK.Position = UDim2.new(0.379054338, 0, 0.734930992, 0)
+OK.Size = UDim2.new(0.23391813, 0, 0.186046511, 0)
+OK.Font = Enum.Font.GothamBold
+OK.Text = "OK"
+OK.TextColor3 = Color3.fromRGB(255, 255, 255)
+OK.TextSize = 18.000
+
+ErrorCodeLabel.Name = "ErrorCodeLabel"
+ErrorCodeLabel.Parent = UnsupportedFrame
+ErrorCodeLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ErrorCodeLabel.BackgroundTransparency = 1.000
+ErrorCodeLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ErrorCodeLabel.BorderSizePixel = 0
+ErrorCodeLabel.Position = UDim2.new(0.133547634, 0, 0.0841112733, 0)
+ErrorCodeLabel.Size = UDim2.new(0.722222269, 0, 0.200249866, 0)
+ErrorCodeLabel.Font = Enum.Font.Gotham
+ErrorCodeLabel.Text = "ERROR CODE: UNSUPPORTED"
+ErrorCodeLabel.TextColor3 = Color3.fromRGB(249, 0, 0)
+ErrorCodeLabel.TextScaled = true
+ErrorCodeLabel.TextSize = 14.000
+ErrorCodeLabel.TextWrapped = true
+
+LogsLabel.Name = "LogsLabel"
+LogsLabel.Parent = UnsupportedFrame
+LogsLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+LogsLabel.BackgroundTransparency = 1.000
+LogsLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+LogsLabel.BorderSizePixel = 0
+LogsLabel.Position = UDim2.new(0.133547634, 0, 0.284111261, 0)
+LogsLabel.Size = UDim2.new(0.722222269, 0, 0.200249866, 0)
+LogsLabel.Font = Enum.Font.Gotham
+LogsLabel.Text = "Logs: Drawing is not supported. Tracer script will not run"
+LogsLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+LogsLabel.TextScaled = true
+LogsLabel.TextSize = 14.000
+LogsLabel.TextWrapped = true
+
+StatusLabel.Name = "StatusLabel"
+StatusLabel.Parent = UnsupportedFrame
+StatusLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+StatusLabel.BackgroundTransparency = 1.000
+StatusLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+StatusLabel.BorderSizePixel = 0
+StatusLabel.Position = UDim2.new(0.136474952, 0, 0.469649345, 0)
+StatusLabel.Size = UDim2.new(0.722222269, 0, 0.0984327123, 0)
+StatusLabel.Font = Enum.Font.Gotham
+StatusLabel.Text = "Status: Normal"
+StatusLabel.TextColor3 = Color3.fromRGB(237, 249, 0)
+StatusLabel.TextScaled = true
+StatusLabel.TextSize = 14.000
+StatusLabel.TextWrapped = true
+
+SolutionLabel.Name = "SolutionLabel"
+SolutionLabel.Parent = UnsupportedFrame
+SolutionLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+SolutionLabel.BackgroundTransparency = 1.000
+SolutionLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+SolutionLabel.BorderSizePixel = 0
+SolutionLabel.Position = UDim2.new(0.136474952, 0, 0.567323744, 0)
+SolutionLabel.Size = UDim2.new(0.722222269, 0, 0.0984327123, 0)
+SolutionLabel.Font = Enum.Font.Gotham
+SolutionLabel.Text = "Solution: Try using another executor."
+SolutionLabel.TextColor3 = Color3.fromRGB(4, 249, 0)
+SolutionLabel.TextScaled = true
+SolutionLabel.TextSize = 14.000
+SolutionLabel.TextWrapped = true
+
+UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(34, 34, 34)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(65, 65, 65))}
+UIGradient_2.Parent = WarningFrame
+
+YES.Name = "YES"
+YES.Parent = WarningFrame
+YES.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+YES.Position = UDim2.new(0.250252604, 0, 0.716326356, 0)
+YES.Size = UDim2.new(0.23391813, 0, 0.186046511, 0)
+YES.Font = Enum.Font.GothamBold
+YES.Text = "YES!"
+YES.TextColor3 = Color3.fromRGB(255, 255, 255)
+YES.TextSize = 18.000
+
+WarningLabel.Name = "WarningLabel"
+WarningLabel.Parent = WarningFrame
+WarningLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+WarningLabel.BackgroundTransparency = 1.000
+WarningLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+WarningLabel.BorderSizePixel = 0
+WarningLabel.Position = UDim2.new(0.136474967, 0, 0.11201825, 0)
+WarningLabel.Size = UDim2.new(0.722222209, 0, 0.548837185, 0)
+WarningLabel.Font = Enum.Font.Gotham
+WarningLabel.Text = "Are you SURE you want to enable this feature? When you enable it you won't be able turn this feature off because it is an BETA feature."
+WarningLabel.TextColor3 = Color3.fromRGB(249, 249, 249)
+WarningLabel.TextScaled = true
+WarningLabel.TextSize = 14.000
+WarningLabel.TextWrapped = true
+
+NO.Name = "NO"
+NO.Parent = WarningFrame
+NO.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+NO.Position = UDim2.new(0.52510643, 0, 0.716326356, 0)
+NO.Size = UDim2.new(0.23391813, 0, 0.186046511, 0)
+NO.Font = Enum.Font.GothamBold
+NO.Text = "NO!"
+NO.TextColor3 = Color3.fromRGB(255, 255, 255)
+NO.TextSize = 18.000
+
+local framepressed = false
 
 -- Walkspeed configuration
 local MIN_SPEED = 13 -- Minimum walkspeed value
@@ -55,115 +428,493 @@ local walkspeedEnabled = false -- Variable to track the state of walkspeed scrip
 
 -- Function to set the walkspeed
 local function setWalkspeed(player, speed)
-    if player.Character and player.Character:FindFirstChild("Humanoid") and speed >= MIN_SPEED and speed <= MAX_SPEED then
-        player.Character.Humanoid.WalkSpeed = speed
-    end
+	if player.Character and player.Character:FindFirstChild("Humanoid") and speed >= MIN_SPEED and speed <= MAX_SPEED then
+		player.Character.Humanoid.WalkSpeed = speed
+	end
 end
 
 -- Function to toggle the walkspeed script
 local function toggleWalkspeedScript()
-    walkspeedEnabled = not walkspeedEnabled
+	walkspeedEnabled = not walkspeedEnabled
 
-    if walkspeedEnabled then
-        local speed = tonumber(textBox.Text)
-        if speed then
-            toggleButton.Text = "DISABLE"
-            toggleButton.BackgroundColor3 = Color3.new(1, 0, 0) -- Red background
+	if walkspeedEnabled then
+		local speed = tonumber(SpeedTextBox.Text)
+		if speed then
+			SpeedToggleButton.Text = "DISABLE"
+			SpeedToggleButton.BackgroundColor3 = Color3.new(1, 0, 0) -- Red background
 
-            while walkspeedEnabled do
-                wait(0.03)
-                setWalkspeed(game.Players.LocalPlayer, speed)
-            end
-        end
-    else
-        setWalkspeed(game.Players.LocalPlayer, MIN_SPEED)
-        toggleButton.Text = "ENABLE"
-        toggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green background
-    end
+			while walkspeedEnabled do
+				wait(0.03)
+				setWalkspeed(game.Players.LocalPlayer, speed)
+			end
+		end
+	else
+		-- Delay before disabling walkspeed to ensure it's not set to MIN_SPEED immediately
+		wait(0.1)
+
+		-- Disable walkspeed
+		setWalkspeed(game.Players.LocalPlayer, MIN_SPEED)
+		SpeedToggleButton.Text = "ENABLE"
+		SpeedToggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green background
+	end
 end
 
+-- Variables
+local camera = game.Workspace.CurrentCamera
+local defaultFOV = 70
+local minValue = 70
+local maxValue = 120
+local enabled = false
 
 
+-- Function to apply field of view
+local function applyFOV()
+	local fovValue = tonumber(FOVTextBox.Text)
 
-
--- Function to toggle the minimize/restore
-local function toggleMinimize()
-    if minimizeButton.Text == "-" then
-        frame.Size = UDim2.new(0, 20, 0, 20) -- Minimize the frame size
-        minimizeButton.Text = "+"
-        textBox.Visible = false -- Hide the textBox when frame is minimized
-    else
-        frame.Size = UDim2.new(0, 200, 0, 80) -- Restore the frame size
-        minimizeButton.Text = "-"
-        textBox.Visible = true -- Show the textBox when frame is restored
-    end
+	if fovValue and fovValue >= minValue and fovValue <= maxValue then
+		camera.FieldOfView = fovValue
+	else
+		camera.FieldOfView = defaultFOV
+		FOVTextBox.Text = tostring(defaultFOV)
+	end
 end
+
+-- Enable/Disable Button Click Event
+FOVToggleButton.MouseButton1Click:Connect(function()
+	enabled = not enabled
+	if enabled then
+		applyFOV()
+		FOVToggleButton.Text = "Disable"
+		FOVToggleButton.BackgroundColor3 = Color3.new(1, 0, 0) -- Red background
+	else
+		camera.FieldOfView = defaultFOV
+		FOVToggleButton.Text = "Enable"
+		FOVToggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green background
+	end
+end)
+
+-- TextBox Focus Lost Event
+FOVTextBox.FocusLost:Connect(function()
+	if enabled then
+		applyFOV()
+	end
+end)
+
+-- Script to instantly trigger all proximity prompts in Roblox using RunService
+
+local RunService = game:GetService("RunService")
+
+-- Variable to track the activation state
+local isActivated = false
+
+-- Function to handle proximity prompts
+local function handleProximityPrompts()
+	while isActivated do
+		-- Iterate through all descendants in the game
+		for _, descendant in pairs(game:GetDescendants()) do
+			-- Check if the descendant is a ProximityPrompt
+			local proximityPrompt = descendant:FindFirstChildOfClass("ProximityPrompt")
+			if proximityPrompt then
+				-- Set HoldDuration to 0 for instant triggering
+				proximityPrompt.HoldDuration = 0
+			end
+		end
+		RunService.RenderStepped:Wait()
+	end
+end
+
+-- Connect the function to the TextButton's MouseButton1Click event
+ProximityToggleButton.MouseButton1Click:Connect(function()
+	if framepressed == true then
+		
+	else
+		WarningFrame.Visible = true
+		MinimizeButton.Visible = false
+	end
+end)
+
+
+local Clipon = false
+local Plr = game.Players.LocalPlayer
+local SteppedConnection
+
+local function toggleNoclip()
+	if NoclipToggleButton.Text == "ENABLE" then
+		Clipon = true
+		NoclipToggleButton.Text = "DISABLE"
+		NoclipToggleButton.BackgroundColor3 = Color3.new(1, 0, 0) -- Red background
+		SteppedConnection = game:GetService("RunService").Stepped:Connect(function()
+			if not Clipon then
+				SteppedConnection:Disconnect() -- Disconnect the Stepped event when Clipon is false
+				-- Enable collision back when disabling Noclip
+				for _, b in pairs(workspace:GetChildren()) do
+					if b.Name == Plr.Name and b:IsA("Model") then
+						for _, v in pairs(b:GetDescendants()) do
+							if v:IsA("BasePart") then
+								v.CanCollide = true
+							end
+						end
+					end
+				end
+			else
+				for _, b in pairs(workspace:GetChildren()) do
+					if b.Name == Plr.Name and b:IsA("Model") then
+						for _, v in pairs(b:GetDescendants()) do
+							if v:IsA("BasePart") then
+								v.CanCollide = false
+							end
+						end
+					end
+				end
+			end
+		end)
+	elseif NoclipToggleButton.Text == "DISABLE" then
+		Clipon = false
+		NoclipToggleButton.Text = "ENABLE"
+		NoclipToggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green background
+		-- Disconnect the Stepped event when disabling Noclip
+		if SteppedConnection then
+			SteppedConnection:Disconnect()
+			-- Enable collision back when disabling Noclip
+			for _, b in pairs(workspace:GetChildren()) do
+				if b.Name == Plr.Name and b:IsA("Model") then
+					for _, v in pairs(b:GetDescendants()) do
+						if v:IsA("BasePart") then
+							v.CanCollide = true
+						end
+					end
+				end
+			end
+		end
+	end
+end
+
+NoclipToggleButton.MouseButton1Click:Connect(toggleNoclip)
+
+
+local DrawingSupported = pcall(function()
+	local testDrawing = Drawing.new("Line")
+	testDrawing:Remove()
+end)
+
+if DrawingSupported then
+	local RunService = game:GetService("RunService")
+	local Players = game:GetService("Players")
+	local Camera = game:GetService("Workspace").CurrentCamera
+	local UserInputService = game:GetService("UserInputService")
+	local Workspace = game:GetService("Workspace")
+
+	local Typing = false
+
+	_G.SendNotifications = true
+	_G.DefaultSettings = false
+	_G.TeamCheck = false
+	_G.FromMouse = false
+	_G.FromCenter = false
+	_G.FromBottom = true
+	_G.TracersVisible = true
+	_G.TracerColor = Color3.fromRGB(15, 255, 167)
+	_G.TracerThickness = 1
+	_G.TracerTransparency = 0.8
+	_G.ModeSkipKey = Enum.KeyCode.F14
+	_G.DisableKey = Enum.KeyCode.F15
+
+	local PlayerTracers = {}  -- Store Drawing objects associated with each player
+
+	local function CreateTracer(target, modelName)
+		local TracerLine = Drawing.new("Line")
+		local TracerLabel = Drawing.new("Text")
+
+		RunService.RenderStepped:Connect(function()
+			local model = target:IsA("Player") and target.Character or target
+			local humanoidRootPart = model:FindFirstChild("HumanoidRootPart")
+
+			if humanoidRootPart then
+				local HumanoidRootPart_Position, HumanoidRootPart_Size = humanoidRootPart.CFrame, humanoidRootPart.Size * 1
+				local Vector, OnScreen = Camera:WorldToViewportPoint(HumanoidRootPart_Position * CFrame.new(0, -HumanoidRootPart_Size.Y, 0).p)
+
+				TracerLine.Thickness = _G.TracerThickness
+				TracerLine.Transparency = _G.TracerTransparency
+				TracerLine.Color = _G.TracerColor
+
+				TracerLabel.Position = Vector2.new(Vector.X, Vector.Y)
+				TracerLabel.Text = modelName
+				TracerLabel.Color = _G.TracerColor
+				TracerLabel.Size = 18
+				TracerLabel.Center = true
+
+				if _G.FromMouse == true and _G.FromCenter == false and _G.FromBottom == false then
+					TracerLine.From = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y)
+				elseif _G.FromMouse == false and _G.FromCenter == true and _G.FromBottom == false then
+					TracerLine.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
+				elseif _G.FromMouse == false and _G.FromCenter == false and _G.FromBottom == true then
+					TracerLine.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y)
+				end
+
+				if OnScreen == true then
+					TracerLine.To = Vector2.new(Vector.X, Vector.Y)
+					TracerLine.Visible = _G.TracersVisible
+
+					TracerLabel.Visible = _G.TracersVisible
+				else
+					TracerLine.Visible = false
+					TracerLabel.Visible = false
+				end
+			else
+				TracerLine.Visible = false
+				TracerLabel.Visible = false
+			end
+		end)
+
+		if target:IsA("Player") then
+			Players.PlayerRemoving:Connect(function(removedPlayer)
+				if removedPlayer == target then
+					TracerLine:Remove()  -- Remove the Drawing objects when the player leaves
+					TracerLabel:Remove()
+					PlayerTracers[target] = nil
+				end
+			end)
+		end
+
+		PlayerTracers[target] = { TracerLine = TracerLine, TracerLabel = TracerLabel }
+	end
+
+	local function CreateTracers()
+		-- Create tracers for players
+		for _, target in pairs(Players:GetPlayers()) do
+			if target ~= Players.LocalPlayer then
+				local modelName = target:IsA("Player") and target.Name or ""
+				CreateTracer(target, modelName)
+			end
+		end
+
+		-- Create tracers for models with humanoid parts in Workspace
+		local function CheckAndCreateTracer(model)
+			local humanoid = model:FindFirstChildOfClass("Humanoid")
+			if humanoid then
+				local modelName = model.Name
+				CreateTracer(model, modelName)
+			end
+		end
+
+		for _, descendant in pairs(Workspace:GetDescendants()) do
+			if descendant:IsA("Model") then
+				CheckAndCreateTracer(descendant)
+			end
+		end
+
+		Workspace.DescendantAdded:Connect(function(descendant)
+			if descendant:IsA("Model") then
+				CheckAndCreateTracer(descendant)
+			end
+		end)
+
+		-- Handle player added events
+		Players.PlayerAdded:Connect(function(newPlayer)
+			if newPlayer ~= Players.LocalPlayer then
+				local modelName = newPlayer:IsA("Player") and newPlayer.Name or ""
+				CreateTracer(newPlayer, modelName)
+			end
+		end)
+	end
+
+	ESPToggleButton.MouseButton1Click:Connect(function()
+		_G.TracersVisible = not _G.TracersVisible
+
+		if _G.SendNotifications == true then
+			game:GetService("StarterGui"):SetCore("SendNotification", {
+				Title = "The Mimic UI",
+				Text = "The tracers' visibility is now set to " .. tostring(_G.TracersVisible) .. ".",
+				Duration = 5,
+			})
+		end
+	end)
+
+	repeat
+		wait()
+	until game.Players.LocalPlayer
+
+	UserInputService.TextBoxFocused:Connect(function()
+		Typing = true
+	end)
+
+	UserInputService.TextBoxFocusReleased:Connect(function()
+		Typing = false
+	end)
+
+	UserInputService.InputBegan:Connect(function(Input)
+		if Input.KeyCode == _G.ModeSkipKey and Typing == false then
+			-- ... (your existing code)
+		elseif Input.KeyCode == _G.DisableKey and Typing == false then
+			-- ... (your existing code)
+		end
+	end)
+
+	if _G.DefaultSettings == true then
+		-- ... (your existing code)
+	end
+
+	local Success, Errored = pcall(CreateTracers)
+
+	if Success and not Errored then
+		if _G.SendNotifications == true then
+			game:GetService("StarterGui"):SetCore("SendNotification", {
+				Title = "The Mimic UI",
+				Text = "Tracer script has successfully loaded.",
+				Duration = 5,
+			})
+		end
+	elseif Errored and not Success then
+		if _G.SendNotifications == true then
+			game:GetService("StarterGui"):SetCore("SendNotification", {
+				Title = "The Mimic UI",
+				Text = "Tracer script has encountered an error.",
+				Duration = 5,
+			})
+		end
+	end
+else
+	print("Drawing is not supported. Tracer script will not run.")
+	Unsupported.Value = true
+	ESPToggleButton.BackgroundColor3 = Color3.new(0.329412, 0.329412, 0.329412)
+	ESPToggleButton.Text = "NOT AVAILABLE"
+end
+
+ESPToggleButton.MouseButton1Click:Connect(function()
+	if Unsupported.Value == true then
+		-- Open Unsupported Code UI
+		UnsupportedFrame.Visible = true
+	else
+		print("supported")
+	end
+end)
+
+OK.MouseButton1Click:Connect(function()
+	UnsupportedFrame.Visible = false
+end)
+
+-- Variables
+local xrayEnabled = false
+local originalTransparencies = {}
+
+-- Function to store original transparencies
+local function storeOriginalTransparencies()
+	for _, object in pairs(game:GetDescendants()) do
+		if object:IsA("BasePart") then
+			originalTransparencies[object] = object.Transparency
+		end
+	end
+end
+
+-- Function to enable XRAY
+local function enableXRAY()
+	for part, originalTransparency in pairs(originalTransparencies) do
+		part.Transparency = 0.5
+	end
+	xrayEnabled = true
+	XRayToggleButton.BackgroundColor3 = Color3.new(1, 0, 0) -- Red background
+	XRayToggleButton.Text = "DISABLE"
+end
+
+-- Function to disable XRAY
+local function disableXRAY()
+	for part, originalTransparency in pairs(originalTransparencies) do
+		part.Transparency = originalTransparency
+	end
+	xrayEnabled = false
+	XRayToggleButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green background
+	XRayToggleButton.Text = "ENABLE"
+	storeOriginalTransparencies()
+end
+
+-- Main Script
+
+-- Store original transparencies when the game starts
+storeOriginalTransparencies()
+
+XRayToggleButton.MouseButton1Click:Connect(function()
+	if xrayEnabled then
+		disableXRAY()
+	else
+		enableXRAY()
+	end
+end)
+
+
+local function ToggleClose()
+	ButtonFrame.Visible = false
+	ToggleClosebutton.Visible = true
+end
+
+ToggleClosebutton.MouseButton1Click:Connect(function()
+	ToggleClosebutton.Visible = false
+	ButtonFrame.Visible = true
+end)
 
 -- Function to enable dragging of the frame
 local function enableDragging(gui)
-    local dragInput, dragStart, startPos
-    local dragging = false
+	local dragInput, dragStart, startPos
+	local dragging = false
 
-    local function update(input)
-        local delta = input.Position - dragStart
-        gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-    end
+	local function update(input)
+		local delta = input.Position - dragStart
+		gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
 
-    gui.InputBegan:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-            dragging = true
-            dragStart = input.Position
-            startPos = gui.Position
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
 
-            input.Changed:Connect(function()
-                if input.UserInputState == Enum.UserInputState.End then
-                    dragging = false
-                end
-            end)
-        end
-    end)
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
 
-    gui.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-            dragInput = input
-        end
-    end)
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
 
-    game:GetService("UserInputService").InputChanged:Connect(function(input)
-        if input == dragInput and dragging then
-            update(input)
-        end
-    end)
+	game:GetService("UserInputService").InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
 end
 
-local function checkButtonState()
-    while true do
-        if not toggleButton:IsDescendantOf(frame) or not frame:IsDescendantOf(screenGui) then
-            -- Recreate the GUI if the button or frame is not in the correct parent
-            frame:Destroy()
-            frame = Instance.new("Frame")
-            frame.Name = "ButtonFrame"
-            frame.Size = UDim2.new(0, 200, 0, 80)
-            frame.Position = UDim2.new(0, 20, 1, -100) -- Bottom left corner
-            frame.BackgroundColor3 = Color3.new(0, 0, 0) -- Black background
-            frame.Active = true -- Allow user input
-            frame.Parent = screenGui
+YES.MouseButton1Click:Connect(function()
+		YES.Parent.Visible = false
+		if MinimizeButton.Visible == false then
+			MinimizeButton.Visible = true
+		end
+		ProximityToggleButton.BackgroundColor3 = Color3.new(0.403922, 0.403922, 0.403922)
+		ProximityToggleButton.Text = "ENABLED"
+		framepressed = true
+		-- Check if the script is not already activated
+		if not isActivated then
+			-- Set the activation state to true
+			isActivated = true
 
-            toggleButton.Parent = frame
-            textBox.Parent = frame
-            minimizeButton.Parent = frame
+			-- Start the handleProximityPrompts function
+			handleProximityPrompts()
+	end
+end)
+NO.MouseButton1Click:Connect(function()
+	WarningFrame.Visible = false
+	if MinimizeButton.Visible == false then
+		MinimizeButton.Visible = true
+	end
+end)
+enableDragging(ButtonFrame)
+enableDragging(ToggleClosebutton)
+SpeedToggleButton.MouseButton1Click:Connect(toggleWalkspeedScript)
+MinimizeButton.MouseButton1Click:Connect(ToggleClose)
 
-            enableDragging(frame)
-            toggleButton.MouseButton1Click:Connect(toggleWalkspeedScript)
-            minimizeButton.MouseButton1Click:Connect(toggleMinimize)
-        end
-        wait(1)
-    end
-end
 
-enableDragging(frame)
-toggleButton.MouseButton1Click:Connect(toggleWalkspeedScript)
-minimizeButton.MouseButton1Click:Connect(toggleMinimize)
-
--- Start the checkButtonState coroutine
-coroutine.wrap(checkButtonState)()
+		
